@@ -1,0 +1,6 @@
+@Kogan.Mobile.Application_HostAddress = http://localhost:5274
+
+GET {{Kogan.Mobile.Application_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
