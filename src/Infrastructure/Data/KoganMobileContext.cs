@@ -4,24 +4,30 @@ using Kogan.Domain.Common.Interfaces;
 using Kogan.Domain.SAP.Interfaces;
 using Kogan.ErpSync.IntegrationData.ValueConverters;
 using Kogan.Mobile.Domain.BusinessPartners;
+using Kogan.Mobile.Domain.Mobile;
 using Kogan.Mobile.Domain.Mobile.Enums;
-using Kogan.Mobile.IntegrationData.Mobile;
+using Kogan.Mobile.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Data
 {
-    public class KoganMobileContext : DbContext
+    public class KoganMobileContext : DbContext, IKoganMobileContext
     {
         public DbSet<Voucher> Vouchers => this.Set<Voucher>();
         public DbSet<Batch> Batches => this.Set<Batch>();
         public DbSet<BusinessPartner> BusinessPartners => this.Set<BusinessPartner>();
+        public DbSet<VoucherPin> VoucherPins => this.Set<VoucherPin>();
+
+        public KoganMobileContext(DbContextOptions<KoganMobileContext> options) : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             // Generic Configuration - Per Interface
             foreach (var table in modelBuilder.Model.GetEntityTypes())
             {
-                if (table.ClrType.IsAssignableTo(typeof(IEntity)))
+                if (table.ClrType.IsAssignableTo(typeof(IEntity)) && table.BaseType == null)
                 {
                     modelBuilder.Entity(table.ClrType, opts =>
                     {
@@ -133,6 +139,11 @@ namespace Infrastructure.Data
                 opts
                     .Property(vP => vP.IsExpired)
                     .HasDefaultValue(value: false);
+
+                opts
+                    .Property(v => v.State)
+                    .HasConversion<string>(new EnumMemberToStringConverter<VoucherPinStateEnum>())
+                    .HasMaxLength(1);
             });
 
 

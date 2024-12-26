@@ -1,0 +1,1 @@
+dotnet ef migrations add "Init" --project src\Infrastructure --startup-project src\Web --output-dir Data\Migrations

@@ -2,7 +2,7 @@
 using Kogan.Mobile.Domain.BusinessPartners;
 using Kogan.Mobile.Domain.Mobile.Enums;
 
-namespace Kogan.Mobile.IntegrationData.Mobile
+namespace Kogan.Mobile.Domain.Mobile
 {
     public sealed class Batch : IEntity, IDescriptive
     {

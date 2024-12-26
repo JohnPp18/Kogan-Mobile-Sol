@@ -1,10 +1,12 @@
 ﻿using Kogan.Domain.Common.Interfaces;
 using Kogan.Mobile.Domain.Mobile.Enums;
 
-namespace Kogan.Mobile.IntegrationData.Mobile
+namespace Kogan.Mobile.Domain.Mobile
 {
-    public sealed class Voucher : IArticle
+    public sealed class Voucher : IEntity, IArticle
     {
+        public int Id { get; set; }
+
         public int PlanDurationDays { get; set; }
 
         public MobileVoucherSimTypeEnum SimType { get; set; }
@@ -13,6 +15,6 @@ namespace Kogan.Mobile.IntegrationData.Mobile
 
         public string Name { get; set; }
 
-        public string WebSku { get; set; }
+        public string WebSku { get; set; }        
     }
 }

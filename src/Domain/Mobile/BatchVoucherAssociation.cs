@@ -1,4 +1,4 @@
-﻿namespace Kogan.Mobile.IntegrationData.Mobile
+﻿namespace Kogan.Mobile.Domain.Mobile
 {
     public sealed class BatchVoucherAssociation
     {
