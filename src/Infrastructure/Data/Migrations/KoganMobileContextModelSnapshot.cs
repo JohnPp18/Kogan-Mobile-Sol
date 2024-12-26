@@ -83,8 +83,10 @@ namespace Kogan.Mobile.Infrastructure.Data.Migrations
                     b.Property<DateTime>("RedemptionDateEnd")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("SupplierBatchId")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("SupplierBatchId")
+                        .IsRequired()
+                        .HasMaxLength(16)
+                        .HasColumnType("TEXT");
 
                     b.Property<decimal>("SupplierComPrcnt")
                         .HasColumnType("TEXT");
@@ -218,26 +220,6 @@ namespace Kogan.Mobile.Infrastructure.Data.Migrations
                         .HasDefaultValue(86m);
 
                     b.HasDiscriminator().HasValue("S");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Vodafone Australia",
-                            ObjectKey = "S0000000",
-                            ObjectType = "2",
-                            Type = "S",
-                            DefComPercent = 86m
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Vodafone New Zealand",
-                            ObjectKey = "S0000000",
-                            ObjectType = "2",
-                            Type = "S",
-                            DefComPercent = 86m
-                        });
                 });
 
             modelBuilder.Entity("Kogan.Mobile.Domain.Mobile.Batch", b =>

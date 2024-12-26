@@ -1,8 +1,7 @@
 ﻿using Kogan.Domain.BusinessPartners;
 using Kogan.Mobile.Domain.Mobile;
-using Microsoft.EntityFrameworkCore;
 
-namespace Kogan.Mobile.Infrastructure.Data
+namespace Kogan.Mobile.Application.Common.Interfaces
 {
     public interface IKoganMobileContext
     {

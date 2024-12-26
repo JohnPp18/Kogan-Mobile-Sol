@@ -1,1 +1,1 @@
-dotnet ef database update --project src\Infrastructure --startup-project src\Web
+dotnet ef database update --project ..\src\Infrastructure --startup-project ..\src\Web

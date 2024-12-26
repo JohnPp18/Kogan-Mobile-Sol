@@ -9,7 +9,10 @@ namespace Kogan.Mobile.Domain.Mobile
         #region Properties
         public int Id { get; set; }
 
-        public int SupplierBatchId { get; set; }
+        /// <remarks>
+        /// Should always be an integer but set as a string just in case this evolves.
+        /// </remarks>
+        public string SupplierBatchId { get; set; }
 
         public string Name { get; set; }
 

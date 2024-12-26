@@ -3,8 +3,6 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
-
 namespace Kogan.Mobile.Infrastructure.Data.Migrations
 {
     /// <inheritdoc />
@@ -52,7 +50,7 @@ namespace Kogan.Mobile.Infrastructure.Data.Migrations
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    SupplierBatchId = table.Column<int>(type: "INTEGER", nullable: false),
+                    SupplierBatchId = table.Column<string>(type: "TEXT", maxLength: 16, nullable: false),
                     Name = table.Column<string>(type: "TEXT", maxLength: 100, nullable: false),
                     TotalQuantity = table.Column<int>(type: "INTEGER", nullable: false),
                     SupplierComPrcnt = table.Column<decimal>(type: "TEXT", nullable: false),
@@ -122,15 +120,6 @@ namespace Kogan.Mobile.Infrastructure.Data.Migrations
                         principalTable: "BatchVoucherAssociation",
                         principalColumns: new[] { "IdBatch", "IdVoucher" },
                         onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.InsertData(
-                table: "BusinessPartners",
-                columns: new[] { "Id", "DefComPercent", "Name", "ObjectKey", "ObjectType", "Type" },
-                values: new object[,]
-                {
-                    { 1, 86m, "Vodafone Australia", "S0000000", "2", "S" },
-                    { 2, 86m, "Vodafone New Zealand", "S0000001", "2", "S" }
                 });
 
             migrationBuilder.CreateIndex(

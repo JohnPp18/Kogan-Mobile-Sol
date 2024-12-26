@@ -14,10 +14,12 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{465FF4EC-5F50-4CC8-AF8D-60188E0C0C49}"
 	ProjectSection(SolutionItems) = preProject
 		scripts\add-migration.ps1 = scripts\add-migration.ps1
-		update-database.ps1 = update-database.ps1
+		scripts\update-database.ps1 = scripts\update-database.ps1
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{607C1832-DA18-41A5-B81E-E4AC53D3782C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exceptions", "..\src\Kogan.Mobile\Exceptions\Exceptions.csproj", "{60092AB5-0976-48F6-8B14-33F334036992}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +43,10 @@ Global
 		{7D434973-1C95-406F-995A-62F2CB751D40}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7D434973-1C95-406F-995A-62F2CB751D40}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7D434973-1C95-406F-995A-62F2CB751D40}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60092AB5-0976-48F6-8B14-33F334036992}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60092AB5-0976-48F6-8B14-33F334036992}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60092AB5-0976-48F6-8B14-33F334036992}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60092AB5-0976-48F6-8B14-33F334036992}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -50,6 +56,7 @@ Global
 		{CA9CC23F-15F0-4CEE-AAE3-19B80CE577FA} = {607C1832-DA18-41A5-B81E-E4AC53D3782C}
 		{0312C114-D590-4583-B857-041B61F38C84} = {607C1832-DA18-41A5-B81E-E4AC53D3782C}
 		{7D434973-1C95-406F-995A-62F2CB751D40} = {607C1832-DA18-41A5-B81E-E4AC53D3782C}
+		{60092AB5-0976-48F6-8B14-33F334036992} = {607C1832-DA18-41A5-B81E-E4AC53D3782C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2374C525-1C83-4CEB-8B92-75139FF6A850}

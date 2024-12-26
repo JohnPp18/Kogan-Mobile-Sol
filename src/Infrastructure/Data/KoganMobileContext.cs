@@ -6,8 +6,7 @@ using Kogan.ErpSync.IntegrationData.ValueConverters;
 using Kogan.Mobile.Domain.BusinessPartners;
 using Kogan.Mobile.Domain.Mobile;
 using Kogan.Mobile.Domain.Mobile.Enums;
-using Kogan.Mobile.Infrastructure.Data;
-using Microsoft.EntityFrameworkCore;
+using Kogan.Mobile.Application.Common.Interfaces;
 
 namespace Infrastructure.Data
 {
@@ -154,6 +153,11 @@ namespace Infrastructure.Data
                     .IsUnique();
 
                 opts
+                    .Property(mB => mB.SupplierBatchId)
+                    .IsRequired()
+                    .HasMaxLength(16);
+
+                opts
                     .Property(mB => mB.Name)
                     .IsRequired()
                     .HasMaxLength(100);
@@ -235,25 +239,6 @@ namespace Infrastructure.Data
                 .HasConversion<string>(new EnumMemberToStringConverter<BusinessPartnerTypeEnum>())
                 .HasMaxLength(1);
             });
-
-            modelBuilder.Entity<Supplier>().HasData(
-                new Supplier()
-                {
-                    Id = 1,
-                    ObjectType= "2",
-                    ObjectKey = "S0000000",
-                    Name = "Vodafone Australia",
-                    DefComPercent = 86
-                },
-                new Supplier()
-                {
-                    Id = 2,
-                    ObjectType = "2",
-                    ObjectKey = "S0000000",
-                    Name = "Vodafone New Zealand",
-                    DefComPercent = 86
-                }
-            );
         }
     }
 }

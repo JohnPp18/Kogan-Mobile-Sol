@@ -1,6 +1,6 @@
 ﻿using Infrastructure.Data;
+using Kogan.Mobile.Application.Common.Interfaces;
 using Kogan.Mobile.Infrastructure.Data;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 
@@ -18,6 +18,7 @@ namespace Microsoft.Extensions.DependencyInjection
             });
 
             builder.Services.AddScoped<IKoganMobileContext>(provider => provider.GetRequiredService<KoganMobileContext>());
+            builder.Services.AddScoped<KoganMobileContextInitializer>();
         }
     }
 }
