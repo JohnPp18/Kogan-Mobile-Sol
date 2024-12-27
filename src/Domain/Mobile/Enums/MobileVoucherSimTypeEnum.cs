@@ -4,13 +4,16 @@ namespace Kogan.Mobile.Domain.Mobile.Enums
 {
     public enum MobileVoucherSimTypeEnum
     {
+        [EnumMember(Value = "None")]
+        None = 0,
+
         [EnumMember(Value = "NoSim")]
-        NoSim = 0,
+        NoSim = 1,
 
         [EnumMember(Value = "Sim")]
-        Sim = 1,
+        Sim = 2,
 
         [EnumMember(Value = "ESim")]
-        ESim = 2
+        ESim = 3
     }
 }

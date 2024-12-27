@@ -19,7 +19,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{465F
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{607C1832-DA18-41A5-B81E-E4AC53D3782C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exceptions", "..\src\Kogan.Mobile\Exceptions\Exceptions.csproj", "{60092AB5-0976-48F6-8B14-33F334036992}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Exceptions", "..\src\Kogan.Mobile\Exceptions\Exceptions.csproj", "{60092AB5-0976-48F6-8B14-33F334036992}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "assets", "assets", "{FDE1705C-5D15-4730-AD8E-F7DFAC2B83DA}"
+	ProjectSection(SolutionItems) = preProject
+		LoadBatchCommandFromFile.txt = LoadBatchCommandFromFile.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -7,6 +7,7 @@ using Kogan.Mobile.Domain.BusinessPartners;
 using Kogan.Mobile.Domain.Mobile;
 using Kogan.Mobile.Domain.Mobile.Enums;
 using Kogan.Mobile.Application.Common.Interfaces;
+using Kogan.Mobile.Domain.Common.Interfaces;
 
 namespace Infrastructure.Data
 {
@@ -16,6 +17,8 @@ namespace Infrastructure.Data
         public DbSet<Batch> Batches => this.Set<Batch>();
         public DbSet<BusinessPartner> BusinessPartners => this.Set<BusinessPartner>();
         public DbSet<VoucherPin> VoucherPins => this.Set<VoucherPin>();
+        public DbSet<Supplier> Suppliers => (DbSet<Supplier>)this.BusinessPartners.Where(b => b.Type == BusinessPartnerTypeEnum.Supplier);
+        public DbSet<Customer> Customers => (DbSet<Customer>)this.BusinessPartners.Where(b => b.Type == BusinessPartnerTypeEnum.Customer);
 
         public KoganMobileContext(DbContextOptions<KoganMobileContext> options) : base(options) { }
 
@@ -48,6 +51,17 @@ namespace Infrastructure.Data
                             .HasMaxLength(254);
                     });
                 }
+
+                if (table.ClrType.IsAssignableTo(typeof(IActivable)))
+                {
+                    modelBuilder.Entity(table.ClrType, opts =>
+                    {
+                        opts
+                            .Property(nameof(IActivable.Active))
+                            .HasDefaultValue(true);
+                    });
+                }
+
 
                 if (table.ClrType.IsAssignableTo(typeof(ICreatable)))
                 {
@@ -142,38 +156,44 @@ namespace Infrastructure.Data
                 opts
                     .Property(v => v.State)
                     .HasConversion<string>(new EnumMemberToStringConverter<VoucherPinStateEnum>())
-                    .HasMaxLength(1);
+                    .HasMaxLength(4);
             });
 
 
             modelBuilder.Entity<Batch>(opts =>
             {
                 opts
-                    .HasIndex(mB => mB.SupplierBatchId)
+                    .HasIndex(b => b.SupplierBatchId)
                     .IsUnique();
 
                 opts
-                    .Property(mB => mB.SupplierBatchId)
+                    .Property(b => b.SupplierBatchId)
                     .IsRequired()
                     .HasMaxLength(16);
 
                 opts
-                    .Property(mB => mB.Name)
+                    .Property(b => b.Name)
                     .IsRequired()
                     .HasMaxLength(100);
 
                 opts
-                    .Property(mB => mB.SupplierBatchId)
+                    .Property(b => b.SupplierBatchId)
                     .ValueGeneratedNever(); // User has to specifically provide the Batch ID
 
                 opts
-                    .Property(mB => mB.TotalQuantity)
+                    .Property(b => b.TotalQuantity)
                     .IsRequired();
 
                 opts
-                    .Property(v => v.PlanSize)
+                    .Property(b => b.PlanSize)
                     .HasConversion<string>(new EnumMemberToStringConverter<MobileVoucherPlanSizeEnum>())
                     .HasMaxLength(2);
+
+                opts
+                    .Property(b => b.Country)
+                    .HasConversion<string>(new EnumMemberToStringConverter<VoucherCountryEnum>())
+                    .HasMaxLength(2)
+                    .IsRequired();
 
                 opts
                     .HasOne(b => b.Supplier)
@@ -226,14 +246,21 @@ namespace Infrastructure.Data
                     .Property(s => s.DefComPercent)
                     .IsRequired(true)
                     .HasDefaultValue(86);
+
+                opts
+                    .Property(s => s.VoucherCountry)
+                    .HasConversion<string>(new EnumMemberToStringConverter<VoucherCountryEnum>())
+                    .HasMaxLength(2)
+                    .IsRequired()
+                    .HasDefaultValue(VoucherCountryEnum.None);
             });
 
             // Add basic data
             modelBuilder.Entity<BusinessPartner>(opts =>
             {
                 opts.HasDiscriminator<BusinessPartnerTypeEnum>(bP => bP.Type)
-                .HasValue<Supplier>(BusinessPartnerTypeEnum.Supplier)
-                .HasValue<Customer>(BusinessPartnerTypeEnum.Customer);
+                    .HasValue<Supplier>(BusinessPartnerTypeEnum.Supplier)
+                    .HasValue<Customer>(BusinessPartnerTypeEnum.Customer);
 
                 opts.Property(bP => bP.Type)
                 .HasConversion<string>(new EnumMemberToStringConverter<BusinessPartnerTypeEnum>())

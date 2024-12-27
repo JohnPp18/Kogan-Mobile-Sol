@@ -7,7 +7,7 @@ namespace Kogan.Mobile.Domain.Mobile.Enums
     {
         [Description("None")]
         [EnumMember(Value = "N")]
-        N = 0,
+        None = 0,
 
         [Description("Small")]
         [EnumMember(Value = "S")]

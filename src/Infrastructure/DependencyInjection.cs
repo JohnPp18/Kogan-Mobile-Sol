@@ -19,6 +19,7 @@ namespace Microsoft.Extensions.DependencyInjection
 
             builder.Services.AddScoped<IKoganMobileContext>(provider => provider.GetRequiredService<KoganMobileContext>());
             builder.Services.AddScoped<KoganMobileContextInitializer>();
+            builder.Services.AddSingleton(TimeProvider.System);
         }
     }
 }

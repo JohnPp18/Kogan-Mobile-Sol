@@ -38,6 +38,10 @@ namespace Kogan.Mobile.Domain.Mobile
         public DateTime RedemptionDateEnd { get; set; }
 
         public MobileVoucherPlanSizeEnum PlanSize { get; set; }
+
+        public VoucherCountryEnum Country { get; set; }
+
+        public int PlanDurationDays { get; set; }
         #endregion
     }
 }

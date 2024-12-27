@@ -2,10 +2,11 @@
 using Kogan.Domain.BusinessPartners.Interfaces;
 using Kogan.Domain.Common.Interfaces;
 using Kogan.Domain.SAP.Interfaces;
+using Kogan.Mobile.Domain.Common.Interfaces;
 
 namespace Kogan.Domain.BusinessPartners
 {
-    public abstract class BusinessPartner : IEntity, IBusinessPartner, ISapSynchronizable
+    public abstract class BusinessPartner : IEntity, IBusinessPartner, ISapSynchronizable, IActivable
     {
         public int Id { get; set; }
 
@@ -16,6 +17,8 @@ namespace Kogan.Domain.BusinessPartners
         public string ObjectKey { get; set; }
 
         public BusinessPartnerTypeEnum Type { get; }
+
+        public bool Active { get; set; }
 
         protected BusinessPartner(BusinessPartnerTypeEnum type)
         {

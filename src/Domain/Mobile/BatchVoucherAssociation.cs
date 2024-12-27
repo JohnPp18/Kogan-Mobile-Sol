@@ -17,6 +17,6 @@
         /// </summary>
         public decimal SalesPrice { get; set; }
 
-        public ICollection<VoucherPin> Pins { get; set; }
+        public ICollection<VoucherPin> Pins { get; set; } = new List<VoucherPin>();
     }
 }

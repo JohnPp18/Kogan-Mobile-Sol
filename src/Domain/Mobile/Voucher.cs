@@ -7,12 +7,11 @@ namespace Kogan.Mobile.Domain.Mobile
     {
         public int Id { get; set; }
 
-        public int PlanDurationDays { get; set; }
-
         public MobileVoucherSimTypeEnum SimType { get; set; }
 
         public ICollection<BatchVoucherAssociation> Batches { get; set; }
 
+        // To be deleted ?
         public string Name { get; set; }
 
         public string WebSku { get; set; }        

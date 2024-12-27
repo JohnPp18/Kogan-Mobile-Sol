@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Common\Enums\" />
     <Folder Include="Mobile\Interfaces\" />
   </ItemGroup>
 
