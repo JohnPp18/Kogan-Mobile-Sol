@@ -12,11 +12,6 @@
 
         public int TotalQuantity { get; set; }
 
-        /// <summary>
-        /// A same voucher can be sold for another batch (at a different price?)
-        /// </summary>
-        public decimal SalesPrice { get; set; }
-
         public ICollection<VoucherPin> Pins { get; set; } = new List<VoucherPin>();
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace Kogan.Mobile.Application.Batches.Commands.LoadBatch
+﻿namespace Application.Commands.Batches.LoadBatch
 {
     public class BatchCsvLine
     {
@@ -24,6 +24,6 @@
 
         public string Msisdn { get; init; }
 
-        public decimal? RetailPrice { get; init; }
+        public decimal RetailPrice { get; init; }
     }
 }

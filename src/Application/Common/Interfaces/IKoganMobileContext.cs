@@ -15,9 +15,9 @@ namespace Kogan.Mobile.Application.Common.Interfaces
 
         DbSet<BusinessPartner> BusinessPartners { get; }
 
-        DbSet<Supplier> Suppliers { get; }
+        IQueryable<Supplier> Suppliers { get; }
 
-        DbSet<Customer> Customers { get; }
+        IQueryable<Customer> Customers { get; }
 
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
 

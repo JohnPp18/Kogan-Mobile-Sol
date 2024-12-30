@@ -18,7 +18,7 @@ namespace Kogan.Domain.BusinessPartners
 
         public BusinessPartnerTypeEnum Type { get; }
 
-        public bool Active { get; set; }
+        public bool Active { get; set; } = true;
 
         protected BusinessPartner(BusinessPartnerTypeEnum type)
         {

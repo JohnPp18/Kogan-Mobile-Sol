@@ -1,5 +1,6 @@
 ﻿using Infrastructure.Data;
 using Kogan.Mobile.Domain.BusinessPartners;
+using Kogan.Mobile.Domain.Mobile.Enums;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -70,7 +71,9 @@ namespace Kogan.Mobile.Infrastructure.Data
                         ObjectType = "2",
                         ObjectKey = "S0000000",
                         Name = "Vodafone Australia",
-                        DefComPercent = 86
+                        DefComPercent = 86,
+                        VoucherCountry = VoucherCountryEnum.Australia,
+                        Active = true
                     },
                     new Supplier()
                     {
@@ -78,7 +81,9 @@ namespace Kogan.Mobile.Infrastructure.Data
                         ObjectType = "2",
                         ObjectKey = "S0000001",
                         Name = "Vodafone New Zealand",
-                        DefComPercent = 86
+                        DefComPercent = 86,
+                        VoucherCountry = VoucherCountryEnum.NewZealand,
+                        Active = true
                     });
 
                 saveChanges = true;

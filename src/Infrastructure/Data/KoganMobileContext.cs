@@ -17,8 +17,8 @@ namespace Infrastructure.Data
         public DbSet<Batch> Batches => this.Set<Batch>();
         public DbSet<BusinessPartner> BusinessPartners => this.Set<BusinessPartner>();
         public DbSet<VoucherPin> VoucherPins => this.Set<VoucherPin>();
-        public DbSet<Supplier> Suppliers => (DbSet<Supplier>)this.BusinessPartners.Where(b => b.Type == BusinessPartnerTypeEnum.Supplier);
-        public DbSet<Customer> Customers => (DbSet<Customer>)this.BusinessPartners.Where(b => b.Type == BusinessPartnerTypeEnum.Customer);
+        public IQueryable<Supplier> Suppliers => this.Set<Supplier>();
+        public IQueryable<Customer> Customers => this.Set<Customer>();
 
         public KoganMobileContext(DbContextOptions<KoganMobileContext> options) : base(options) { }
 

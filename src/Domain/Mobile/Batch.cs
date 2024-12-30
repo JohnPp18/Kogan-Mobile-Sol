@@ -1,10 +1,12 @@
 ﻿using Kogan.Domain.Common.Interfaces;
+using Kogan.Domain.SAP.Interfaces;
 using Kogan.Mobile.Domain.BusinessPartners;
+using Kogan.Mobile.Domain.Common.Interfaces;
 using Kogan.Mobile.Domain.Mobile.Enums;
 
 namespace Kogan.Mobile.Domain.Mobile
 {
-    public sealed class Batch : IEntity, IDescriptive
+    public sealed class Batch : IEntity, IDescriptive, ISapSynchronizable, IActivable
     {
         #region Properties
         public int Id { get; set; }
@@ -42,6 +44,14 @@ namespace Kogan.Mobile.Domain.Mobile
         public VoucherCountryEnum Country { get; set; }
 
         public int PlanDurationDays { get; set; }
+
+        public string ObjectType { get; set; }
+
+        public string ObjectKey { get; set; }
+
+        public bool Active { get; set; }
+
+        public decimal SalesPrice { get; set; }
         #endregion
     }
 }

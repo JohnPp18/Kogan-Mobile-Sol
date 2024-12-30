@@ -1,4 +1,4 @@
-﻿using Kogan.Mobile.Application.Batches.Commands.LoadBatch;
+﻿using Application.Commands.Batches.LoadBatch;
 using Kogan.Mobile.Web.Infrastructure;
 using MediatR;
 using Microsoft.AspNetCore.Http.HttpResults;
