@@ -40,7 +40,7 @@ namespace Application.Commands.Batches.LoadBatch
         /// </summary>
         public string CsvDelimiter = "|";
 
-        public decimal SalesPrice { get; init } = 0;
+        public decimal SalesPrice { get; init; } = 0;
     }
 
     public class LoadBatchCommandFromFileCommandHandler : IRequestHandler<LoadBatchFromFileCommand, int>
