@@ -143,7 +143,8 @@ namespace Application.Commands.Batches.LoadBatch
                     SupplierComPrcnt = request.SupplierComPercent ?? voucherSupplier.DefComPercent,
                     PlanDurationDays = request.PlanDurationDays,
                     SupplierBatchId = csvRecords.First().BatchId,
-                    SalesPrice = request.SalesPrice
+                    SalesPrice = request.SalesPrice,
+                    RedemptionDateEnd = csvRecords.First().ValidTill
                 };
 
                 int skip = 0;
@@ -160,9 +161,9 @@ namespace Application.Commands.Batches.LoadBatch
                         TotalQuantity = simTypeDistribution.TotalQuantity
                     };
 
-                    for (int i = skip; i < simTypeDistribution.TotalQuantity; i++)
+                    for (int i = 0; i < simTypeDistribution.TotalQuantity; i++)
                     {
-                        var csvRecord = csvRecords.ElementAt(i);
+                        var csvRecord = csvRecords.ElementAt(skip+i);
 
                         batchVoucherAssociation.Pins.Add(new VoucherPin()
                         {
@@ -172,6 +173,7 @@ namespace Application.Commands.Batches.LoadBatch
                             IsExpired = today > csvRecord.ValidTill,
                             IsSold = false,
                             IsRedeemed = false,
+                            BatchVoucherAssociation = batchVoucherAssociation
                         });
                     }
 

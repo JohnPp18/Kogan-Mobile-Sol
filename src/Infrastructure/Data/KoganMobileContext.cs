@@ -216,13 +216,13 @@ namespace Infrastructure.Data
                     .HasOne(bA => bA.Voucher)
                     .WithMany(v => v.Batches)
                     .HasForeignKey(bA => bA.IdVoucher)
-                    .OnDelete(DeleteBehavior.Restrict);
+                    .OnDelete(DeleteBehavior.Cascade);
 
                 opts
                     .HasOne(bA => bA.Batch)
                     .WithMany(b => b.Vouchers)
                     .HasForeignKey(bA => bA.IdBatch)
-                    .OnDelete(DeleteBehavior.Restrict);
+                    .OnDelete(DeleteBehavior.Cascade);
 
                 opts
                     .HasMany(bA => bA.Pins)

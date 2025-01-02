@@ -24,6 +24,9 @@
 
         public string Msisdn { get; init; }
 
-        public decimal RetailPrice { get; init; }
+        /// <remarks>
+        /// The retail price is provided as a null value from the CSV.
+        /// </remarks>
+        public decimal? RetailPrice { get; init; }
     }
 }

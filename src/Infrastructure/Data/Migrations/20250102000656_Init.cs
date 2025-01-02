@@ -95,13 +95,13 @@ namespace Kogan.Mobile.Infrastructure.Data.Migrations
                         column: x => x.IdBatch,
                         principalTable: "Batches",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_BatchVoucherAssociation_Vouchers_IdVoucher",
                         column: x => x.IdVoucher,
                         principalTable: "Vouchers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
