@@ -1,0 +1,51 @@
+specVersion: "4.0"
+metadata:
+  name: kogan.mobile
+type: application
+framework:
+  name: SAPUI5
+  version: "1.131.1"
+  libraries:
+    - name: sap.m
+    - name: sap.ui.core
+    - name: themelib_sap_horizon
+    - name: sap.uxap
+builder:
+  resources:
+    excludes:
+      - "test/e2e/**"
+  customTasks:
+    - name: ui5-tooling-transpile-task
+      afterTask: replaceVersion
+server:
+  customMiddleware:
+    - name: ui5-tooling-transpile-middleware
+      afterMiddleware: compression
+    - name: ui5-middleware-livereload
+      afterMiddleware: compression
+--- # Everything below this line could also be put into the ui5.yaml of a standalone extension module
+specVersion: "3.2"
+kind: extension
+type: project-shim
+metadata:
+  name: kogan.mobile.thirdparty
+shims:
+  configurations:
+    axios: # name as defined in package.json
+      specVersion: "4.0"
+      type: module 
+      metadata:
+        name: axios
+      resources:
+        configuration:
+          paths:
+            /resources/: "dist" # location where modules are stored
+    url-join-ts: # name as defined in package.json
+      specVersion: "4.0"
+      type: module
+      metadata:
+        name: url-join-ts
+      resources:
+        configuration:
+          paths:
+            /resources/: "lib" # map root directory of lodash module

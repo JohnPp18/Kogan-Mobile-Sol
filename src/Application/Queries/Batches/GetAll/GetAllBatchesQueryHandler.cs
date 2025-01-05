@@ -24,6 +24,7 @@ namespace Application.Queries.Batches.GetAll
             IQueryable<Batch> queryBatch = this._koganMobileContext
                 .Batches
                 .Include(b => b.Supplier)
+                .Include(b => b.Vouchers)
                 .AsNoTracking()
                 .OrderByDescending(b => b.Id);
 

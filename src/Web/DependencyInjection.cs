@@ -6,6 +6,20 @@ namespace Microsoft.Extensions.DependencyInjection
     {
         public static void AddWebServices(this IHostApplicationBuilder builder)
         {
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy(
+                    name: "origins",
+                    policy =>
+                    {
+                        policy
+                            .WithOrigins("http://localhost:3000/")
+                            .AllowAnyMethod()
+                            .AllowAnyHeader()
+                            .SetIsOriginAllowed(host => true);
+                    });
+            });
+
             builder.Services.AddHttpContextAccessor();
             builder.Services.AddEndpointsApiExplorer();
 
