@@ -1,0 +1,88 @@
+<mvc:View
+    displayBlock="true"
+    controllerName="kogan.mobile.controller.MasterDetailsPage"
+    height="100%"
+    xmlns="sap.uxap"
+    xmlns:core="sap.ui.core"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:m="sap.m"
+    xmlns:f="sap.f"
+    xmlns:semantic="sap.m.semantic"
+    xmlns:form="sap.ui.layout.form"
+    core:require="{
+		StringUtils: 'kogan/mobile/utils/StringUtils'
+	}"
+>
+    <f:FlexibleColumnLayout
+        id="fcl"
+        stateChange="onStateChanged"
+        layout="{PAGE>/Layout}"
+        backgroundDesign="Translucent"
+    >
+        <f:beginColumnPages>
+            <semantic:MasterPage>
+                <m:List items="{BATCHES>/items}">
+                    <m:items>
+                        <m:CustomListItem
+                            highlight="{= ${BATCHES>active} === true ? 'Information' : 'Error' }"
+                        >
+                            <m:HBox
+                                width="100%"
+                                fitContainer="true"
+                                alignItems="Start"
+                                justifyContent="SpaceBetween"
+                                class="sapUiSmallMarginTopBottom "
+                            >
+                                <m:HBox class="sapUiSmallMarginBeginEnd">
+                                    <core:Icon
+                                        size="2rem"
+                                        src="sap-icon://iphone"
+                                        class="sapUiSmallMarginEnd"
+                                    />
+                                    <m:VBox>
+                                        <m:Label text="{BATCHES>name}" />
+                                        <m:Label
+                                            text="{BATCHES>description}"
+                                            visible="{= StringUtils.isNullOrWhiteSpace(${BATCHES>description}) === false }"
+                                        />
+
+                                        <m:GenericTag
+                                            text="ESIM"
+                                            design="StatusIconHidden"
+                                            status="Information"
+                                        >
+                                            <m:ObjectNumber
+                                                state="Error"
+                                                emphasized="false"
+                                                number="3.5M"
+                                                unit="EUR"
+                                            />
+                                        </m:GenericTag>
+                                    </m:VBox>
+                                </m:HBox>
+
+                                <m:ObjectNumber
+                                    number="{BATCHES>salesPrice}"
+                                    unit="AUD"
+                                    class="sapUiSmallMarginEnd"
+                                />
+                            </m:HBox>
+                        </m:CustomListItem>
+                    </m:items>
+                </m:List>
+                <semantic:customFooterContent>
+                    <m:Button text="{i18n>btn.text.importNewBatch}" />
+                </semantic:customFooterContent>
+            </semantic:MasterPage>
+        </f:beginColumnPages>
+        <f:midColumnPages>
+            <ObjectPageLayout>
+                <headerTitle>
+                    <ObjectPageHeader>
+                        <m:Title text="lol" />
+                    </ObjectPageHeader>
+                </headerTitle>
+            </ObjectPageLayout>
+        </f:midColumnPages>
+    </f:FlexibleColumnLayout>
+</mvc:View>

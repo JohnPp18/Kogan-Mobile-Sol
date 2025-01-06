@@ -17,27 +17,27 @@ namespace Kogan.Mobile.Domain.Mobile.Enums
         /// </summary>
         [Description("Small")]
         [EnumMember(Value = "S")]
-        S = 1,
+        Small = 1,
 
         /// <summary>
         /// Medium
         /// </summary>
         [Description("Medium")]
         [EnumMember(Value = "M")]
-        M = 2,
+        Medium = 2,
 
         /// <summary>
         /// XLarge
         /// </summary>
         [Description("XLarge")]
         [EnumMember(Value = "XL")]
-        XL = 3,
+        XLarge = 3,
 
         /// <summary>
         /// Data
         /// </summary>
         [Description("Data")]
         [EnumMember(Value = "D")]
-        D = 4
+        Data = 4
     }
 }

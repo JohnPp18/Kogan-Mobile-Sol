@@ -131,19 +131,22 @@ namespace Application.Commands.Batches.LoadBatch
                     .SingleAsync(); // There can be only one active voucher provider per country
 
                 // Transform the data into its DB persisted shape
+                var firstCsvRecord = csvRecords.First();
                 var batch = new Batch()
                 {
                     Country = request.Country,
-                    Name = csvRecords.First().Name,
-                    ValidFrom = csvRecords.First().ValidFrom,
-                    ValidTo = csvRecords.First().ValidTill,
+                    Name = firstCsvRecord.Name,
+                    ValidFrom = firstCsvRecord.ValidFrom,
+                    ValidTo = firstCsvRecord.ValidTill,
                     IdSupplier = voucherSupplier.Id,
                     TotalQuantity = csvRecords.Count(),
                     PlanSize = MobileVoucherPlanSizeEnum.None,
                     SupplierComPrcnt = request.SupplierComPercent ?? voucherSupplier.DefComPercent,
                     PlanDurationDays = request.PlanDurationDays,
-                    SupplierBatchId = csvRecords.First().BatchId,
-                    SalesPrice = request.SalesPrice
+                    SupplierBatchId = firstCsvRecord.BatchId,
+                    SalesPrice = request.SalesPrice,
+                    RedemptionDateEnd = firstCsvRecord.ValidTill,
+                    Active = this._timeProvider.GetUtcNow().ToLocalTime().Date <= firstCsvRecord.ValidTill.Date
                 };
 
                 int skip = 0;
@@ -160,9 +163,9 @@ namespace Application.Commands.Batches.LoadBatch
                         TotalQuantity = simTypeDistribution.TotalQuantity
                     };
 
-                    for (int i = skip; i < simTypeDistribution.TotalQuantity; i++)
+                    for (int i = 0; i < simTypeDistribution.TotalQuantity; i++)
                     {
-                        var csvRecord = csvRecords.ElementAt(i);
+                        var csvRecord = csvRecords.ElementAt(skip+i);
 
                         batchVoucherAssociation.Pins.Add(new VoucherPin()
                         {
@@ -172,6 +175,7 @@ namespace Application.Commands.Batches.LoadBatch
                             IsExpired = today > csvRecord.ValidTill,
                             IsSold = false,
                             IsRedeemed = false,
+                            BatchVoucherAssociation = batchVoucherAssociation
                         });
                     }
 

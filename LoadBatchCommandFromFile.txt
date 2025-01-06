@@ -2,7 +2,7 @@
   "filePath": "C:\\Users\\jonathan.papa\\Desktop\\KGN-VOUCHERBATCHENCRYPTEDREPORT-20241203-PL24940.csv",
   "planDurationDays": 30,
   "country": "Australia",
-  "planSize": "S",
+  "planSize": "Small",
   "salesPrice" : 86,
   "simDistribution": [
     {
@@ -17,7 +17,7 @@
     },
         {
       "simType": "NOSIM",
-      "totalQuantity": 3000,
+      "totalQuantity": 3818,
       "webSku": "KM-S365-24940-F-NOSIM"
     }
   ]

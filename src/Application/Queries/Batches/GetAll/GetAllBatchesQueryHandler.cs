@@ -1,7 +1,9 @@
 ﻿using Application.Abstractions.Messaging;
 using Application.Extensions;
+using Application.Queries.Batches.Common;
 using Kogan.Mobile.Application.Common.Interfaces;
 using Kogan.Mobile.Domain.Mobile;
+using Mapster;
 using Microsoft.Extensions.Logging;
 
 namespace Application.Queries.Batches.GetAll
@@ -22,6 +24,7 @@ namespace Application.Queries.Batches.GetAll
             IQueryable<Batch> queryBatch = this._koganMobileContext
                 .Batches
                 .Include(b => b.Supplier)
+                .Include(b => b.Vouchers)
                 .AsNoTracking()
                 .OrderByDescending(b => b.Id);
 
@@ -30,27 +33,7 @@ namespace Application.Queries.Batches.GetAll
 
             var results = await queryBatch
                 .SkipPreviousPage(request.Page, request.PageSize)
-                .Select(b => new BatchResult()
-                {
-                    Active = b.Active,
-                    Country = b.Country,
-                    Description = b.Description,
-                    Id = b.Id,
-                    IdSupplier = b.IdSupplier,
-                    Name = b.Name,
-                    ObjectKey = b.ObjectKey,
-                    ObjectType = b.ObjectType,
-                    PlanDurationDays = b.PlanDurationDays,
-                    PlanSize = b.PlanSize,
-                    RedemptionDateEnd = b.RedemptionDateEnd,
-                    SalesPrice = b.SalesPrice,
-                    SupplierBatchId = b.SupplierBatchId,
-                    SupplierComPrcnt = b.SupplierComPrcnt,
-                    SupplierName = b.Supplier.Name,
-                    TotalQuantity = b.TotalQuantity,
-                    ValidFrom = b.ValidFrom,
-                    ValidTo = b.ValidTo
-                })
+                .Select(b => b.Adapt<BatchResult>())
                 .ToListAsync();
 
             return new GetAllBatchResult()

@@ -273,13 +273,13 @@ namespace Kogan.Mobile.Infrastructure.Data.Migrations
                     b.HasOne("Kogan.Mobile.Domain.Mobile.Batch", "Batch")
                         .WithMany("Vouchers")
                         .HasForeignKey("IdBatch")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Kogan.Mobile.Domain.Mobile.Voucher", "Voucher")
                         .WithMany("Batches")
                         .HasForeignKey("IdVoucher")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Batch");
