@@ -10,6 +10,7 @@ framework:
     - name: sap.ui.core
     - name: themelib_sap_horizon
     - name: sap.uxap
+    - name: sap.tnt
 builder:
   resources:
     excludes:
@@ -33,7 +34,7 @@ shims:
   configurations:
     axios: # name as defined in package.json
       specVersion: "4.0"
-      type: module 
+      type: module
       metadata:
         name: axios
       resources:

@@ -58,14 +58,50 @@
 			"routes": [
 				{
 					"pattern": "",
-					"name": "MasterDetailsPage",
-					"target": "MasterDetailsPage"
+					"name": "home",
+					"target": [
+						"tAppToolPage",
+						"tHome"
+					]
+				},
+				{
+					"pattern": "batches",
+					"name": "batches",
+					"target": [
+						"tAppToolPage",
+						"tMasterDetailsPage",
+						"tBatchMaster"
+					]
 				}
 			],
 			"targets": {
-				"MasterDetailsPage": {
+				"tAppToolPage": {
+					"viewName": "AppToolPage",
+					"viewId": "appToolPage"
+				},
+				"tHome": {
+					"viewName": "Home",
+					"viewId": "home",
+					"parent": "tAppToolPage",
+					"controlId": "pageAppToolPage",
+					"controlAggregation": "content",
+					"clearControlAggregation": true
+				},
+				"tMasterDetailsPage": {
+					"viewName": "MasterDetailsPage",
 					"viewId": "MasterDetailsPage",
-					"viewName": "MasterDetailsPage"
+					"parent": "tAppToolPage",
+					"controlId": "pageAppToolPage",
+					"controlAggregation": "content",
+					"clearControlAggregation": true
+				},
+				"tBatchMaster": {
+					"viewName": "BatchMaster",
+					"viewId": "BatchMaster",
+					"parent": "tMasterDetailsPage",
+					"controlId": "flexColumnLayout",
+					"controlAggregation": "beginColumnPages",
+					"clearControlAggregation": true
 				}
 			}
 		}

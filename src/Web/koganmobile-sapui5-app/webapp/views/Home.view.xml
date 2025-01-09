@@ -1,0 +1,28 @@
+<mvc:View height="100%"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:l="sap.ui.layout"
+    xmlns="sap.m"
+    controllerName="kogan.mobile.controller.Home"
+    displayBlock="true">
+    <l:HorizontalLayout allowWrapping="true" class="sapUiMediumMargin">
+        <GenericTile
+            class="sapUiTinyMarginBegin sapUiTinyMarginTop"
+            header="{i18n>label.batch.plural}"
+            subheader="{i18n>tile.batch.subHeader}"
+            press="onPressNavToBatch">
+            <tileContent>
+                <TileContent>
+                    <content>
+                        <NumericContent
+                            scale="{i18n>label.batch.plural}"
+                            value="{
+                                path: 'process>/Nodes',
+                                formatter: '.getProgress'
+                            }"
+                            icon="sap-icon://group-2" />
+                    </content>
+                </TileContent>
+            </tileContent>
+        </GenericTile>
+    </l:HorizontalLayout>
+</mvc:View>

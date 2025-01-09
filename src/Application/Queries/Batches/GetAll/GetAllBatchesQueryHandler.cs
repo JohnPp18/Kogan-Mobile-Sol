@@ -37,7 +37,7 @@ namespace Application.Queries.Batches.GetAll
                 .ToListAsync();
 
             return new GetAllBatchResult()
-            {²
+            {
                 CurrentPage = request.Page,
                 CurrentPageItemCount = results.Count,
                 Items = results,

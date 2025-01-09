@@ -14,67 +14,12 @@
 	}"
 >
     <f:FlexibleColumnLayout
-        id="fcl"
+        id="flexColumnLayout"
         stateChange="onStateChanged"
         layout="{PAGE>/Layout}"
         backgroundDesign="Translucent"
     >
-        <f:beginColumnPages>
-            <semantic:MasterPage>
-                <m:List items="{BATCHES>/items}">
-                    <m:items>
-                        <m:CustomListItem
-                            highlight="{= ${BATCHES>active} === true ? 'Information' : 'Error' }"
-                        >
-                            <m:HBox
-                                width="100%"
-                                fitContainer="true"
-                                alignItems="Start"
-                                justifyContent="SpaceBetween"
-                                class="sapUiSmallMarginTopBottom "
-                            >
-                                <m:HBox class="sapUiSmallMarginBeginEnd">
-                                    <core:Icon
-                                        size="2rem"
-                                        src="sap-icon://iphone"
-                                        class="sapUiSmallMarginEnd"
-                                    />
-                                    <m:VBox>
-                                        <m:Label text="{BATCHES>name}" />
-                                        <m:Label
-                                            text="{BATCHES>description}"
-                                            visible="{= StringUtils.isNullOrWhiteSpace(${BATCHES>description}) === false }"
-                                        />
-
-                                        <m:GenericTag
-                                            text="ESIM"
-                                            design="StatusIconHidden"
-                                            status="Information"
-                                        >
-                                            <m:ObjectNumber
-                                                state="Error"
-                                                emphasized="false"
-                                                number="3.5M"
-                                                unit="EUR"
-                                            />
-                                        </m:GenericTag>
-                                    </m:VBox>
-                                </m:HBox>
-
-                                <m:ObjectNumber
-                                    number="{BATCHES>salesPrice}"
-                                    unit="AUD"
-                                    class="sapUiSmallMarginEnd"
-                                />
-                            </m:HBox>
-                        </m:CustomListItem>
-                    </m:items>
-                </m:List>
-                <semantic:customFooterContent>
-                    <m:Button text="{i18n>btn.text.importNewBatch}" />
-                </semantic:customFooterContent>
-            </semantic:MasterPage>
-        </f:beginColumnPages>
+        <f:beginColumnPages />
         <f:midColumnPages>
             <ObjectPageLayout>
                 <headerTitle>

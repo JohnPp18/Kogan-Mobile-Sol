@@ -1,0 +1,87 @@
+<mvc:View height="100%"
+    xmlns:core="sap.ui.core"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:l="sap.ui.layout"
+    xmlns="sap.m"
+    xmlns:tnt="sap.tnt"
+    controllerName="kogan.mobile.controller.AppToolpage"
+    xmlns:semantic="sap.m.semantic"
+    displayBlock="true">
+    <Page id="pageAppToolPage">
+        <customHeader>
+            <tnt:ToolHeader design="Transparent"
+                visible="true"
+                style="Clear">
+                <Button icon="sap-icon://home"
+                    type="Transparent"
+                    press="onPressNavHome">
+                    <layoutData>
+                        <OverflowToolbarLayoutData priority="NeverOverflow" />
+                    </layoutData>
+                </Button>
+                <Button icon="sap-icon://menu2"
+                    visible="false"
+                    type="Transparent"
+                    press="onSideNavButtonPress">
+                    <layoutData>
+                        <OverflowToolbarLayoutData priority="NeverOverflow" />
+                    </layoutData>
+                </Button>
+                <Button icon="sap-icon://nav-back"
+                    type="Transparent"
+                    press="onPressNavBack">
+                    <layoutData>
+                        <OverflowToolbarLayoutData priority="NeverOverflow" />
+                    </layoutData>
+                </Button>
+                <Button icon="sap-icon://home"
+                    type="Transparent"
+                    press="onPressNavHome"
+                    text="{i18n>app.title}">
+                    <layoutData>
+                        <OverflowToolbarLayoutData priority="NeverOverflow" />
+                    </layoutData>
+                </Button>
+                <ToolbarSpacer>
+                    <layoutData>
+                        <OverflowToolbarLayoutData priority="NeverOverflow"
+                            minWidth="20px" />
+                    </layoutData>
+                </ToolbarSpacer>
+                <Button icon="sap-icon://message-popup"
+                    press="onOpenMessageView"
+                    type="Transparent">
+                    <layoutData>
+                        <OverflowToolbarLayoutData priority="NeverOverflow" />
+                    </layoutData>
+                    <customData>
+                        <BadgeCustomData key="badge"
+                            value="{= ${MESSAGES>/}.length }"
+                            visible="true" />
+                    </customData>
+                </Button>
+                <!--                 <SearchField liveChange="onSearchMenu" width="200px"></SearchField> -->
+                <MenuButton icon="sap-icon://customer"
+                    type="Transparent"
+                    text="{USER>/UserName}">
+                    <layoutData>
+                        <OverflowToolbarLayoutData priority="Low" />
+                    </layoutData>
+                    <menu>
+                        <Menu>
+                            <MenuItem text="{i18n>XBTN_USR_SETTINGS}"
+                                icon="sap-icon://user-settings"
+                                press="onPressUserSettings">
+                            </MenuItem>
+                            <MenuItem text="{i18n>XBTN_LOGOUT}"
+                                icon="sap-icon://log"
+                                press="onPressLogout">
+                            </MenuItem>
+                        </Menu>
+                    </menu>
+                </MenuButton>
+            </tnt:ToolHeader>
+        </customHeader>
+        <content />
+    </Page>
+</mvc:View>

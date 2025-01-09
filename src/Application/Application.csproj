@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\src\Kogan.Mobile\Exceptions\Exceptions.csproj" />
+    <ProjectReference Include="..\Exceptions\Exceptions.csproj" />
     <ProjectReference Include="..\Domain\Domain.csproj" />
   </ItemGroup>
 
